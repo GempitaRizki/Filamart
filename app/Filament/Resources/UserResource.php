@@ -12,6 +12,8 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Upload;
+use Filament\Forms\Components\FileUpload;
 
 class UserResource extends Resource
 {
@@ -25,7 +27,8 @@ class UserResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')->required(),
                 Forms\Components\TextInput::make('email')->required(),
-                Forms\Components\TextInput::make('password')->required(),
+                Forms\Components\FileUpload::make('image')->required(),
+
             ]);
     }
 
@@ -35,7 +38,7 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('password'),
+                Tables\Columns\ImageColumn::make('image'),
             ])
             ->filters([
                 //
